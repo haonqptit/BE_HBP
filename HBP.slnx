@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/HBP.Application/HBP.Application.csproj" />
+    <Project Path="src/HBP.Api/HBP.Api.csproj" />
+    <Project Path="src/HBP.Domain/HBP.Domain.csproj" />
+    <Project Path="src/HBP.Infrastructure/HBP.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/HBP.UnitTests/HBP.UnitTests.csproj" />
+  </Folder>
+</Solution>

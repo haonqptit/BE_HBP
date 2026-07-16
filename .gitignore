@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+.vs/
+.vscode/
+*.user
+*.suo
+TestResults/
+artifacts/
+data/
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+*.pfx
+*.key
