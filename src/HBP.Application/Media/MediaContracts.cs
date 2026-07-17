@@ -2,8 +2,9 @@ using HBP.Application.Common;
 
 namespace HBP.Application.Media;
 
-public sealed record MediaResponse(Guid Id, string OriginalFileName, string PublicUrl, string MimeType,
-    long SizeBytes, int? Width, int? Height, string? AltTextVi, string? AltTextJa, DateTime CreatedAt);
+public sealed record MediaResponse(Guid Id, string OriginalFileName, string PublicUrl, string MediumUrl,
+    string ThumbnailUrl, string MimeType, long SizeBytes, int? Width, int? Height,
+    string? AltTextVi, string? AltTextJa, DateTime CreatedAt);
 
 public interface IMediaService
 {

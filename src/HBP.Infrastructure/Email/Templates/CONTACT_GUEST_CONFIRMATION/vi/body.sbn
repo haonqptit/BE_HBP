@@ -1,0 +1,1 @@
+<h2>Cảm ơn {{ full_name }}</h2><p>{{ site_name }} đã nhận nội dung liên hệ mã <strong>{{ reference_code }}</strong>. Chúng tôi sẽ phản hồi sớm.</p>

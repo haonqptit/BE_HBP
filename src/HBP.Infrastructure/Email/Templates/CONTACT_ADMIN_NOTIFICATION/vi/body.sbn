@@ -1,0 +1,1 @@
+<h2>Liên hệ mới {{ reference_code }}</h2><p>Khách: {{ full_name }} — {{ email }} — {{ phone_number }}</p><p>Chủ đề: {{ subject }}</p><p>{{ message }}</p>

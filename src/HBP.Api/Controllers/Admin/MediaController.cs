@@ -10,7 +10,7 @@ namespace HBP.Api.Controllers.Admin;
 public sealed class MediaController(IMediaService service) : ControllerBase
 {
     [HttpPost]
-    [RequestSizeLimit(5 * 1024 * 1024)]
+    [RequestSizeLimit(6 * 1024 * 1024)]
     public async Task<IActionResult> Upload(IFormFile file, [FromForm] string? altTextVi,
         [FromForm] string? altTextJa, CancellationToken cancellationToken)
     {

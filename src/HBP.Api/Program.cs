@@ -7,6 +7,9 @@ using HBP.Infrastructure;
 using HBP.Infrastructure.Persistence;
 using HBP.Infrastructure.Persistence.Seed;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Threading.RateLimiting;
+using HBP.Api.HostedServices;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -48,6 +51,30 @@ builder.Services.AddCors(options => options.AddPolicy("Frontend", policy =>
 builder.Services.AddHealthChecks().AddNpgSql(connectionString, name: "postgres");
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.OnRejected = (context, _) =>
+    {
+        context.HttpContext.Response.Headers.RetryAfter = "60";
+        return ValueTask.CompletedTask;
+    };
+    options.AddPolicy("public-submit", context => RateLimitPartition.GetFixedWindowLimiter(
+        context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+        _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 5, Window = TimeSpan.FromMinutes(1), QueueLimit = 0,
+            QueueProcessingOrder = QueueProcessingOrder.OldestFirst
+        }));
+});
+builder.Services.Configure<EmailDispatchOptions>(builder.Configuration.GetSection("EmailDispatch"));
+builder.Services.AddHostedService<EmailDispatchBackgroundService>();
 
 var app = builder.Build();
 if (app.Configuration.GetValue("Database:SeedOnStartup", app.Environment.IsDevelopment()))
@@ -57,10 +84,11 @@ if (app.Configuration.GetValue("Database:SeedOnStartup", app.Environment.IsDevel
     var hasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher>();
     await SeedData.InitializeAsync(db, hasher);
 }
+app.UseForwardedHeaders();
 app.UseExceptionHandler();
 app.UseSerilogRequestLogging();
 if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
-app.UseHttpsRedirection();
+app.UseCors("Frontend");
 var mediaRoot = Path.GetFullPath(builder.Configuration["Media:StorageRoot"] ?? "data/media");
 Directory.CreateDirectory(mediaRoot);
 app.UseStaticFiles(new StaticFileOptions
@@ -69,11 +97,12 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/media",
     OnPrepareResponse = context => context.Context.Response.Headers.CacheControl = "public,max-age=31536000,immutable"
 });
-app.UseCors("Frontend");
 app.UseMiddleware<LanguageResolutionMiddleware>();
+app.UseRateLimiter();
 app.UseAuthentication();
 app.UseMiddleware<AdminCsrfMiddleware>();
 app.UseAuthorization();
+app.UseMiddleware<PublicCacheMiddleware>();
 app.MapControllers();
 app.MapGet("/health", () => Results.Ok(new { status = "healthy" }));
 app.MapHealthChecks("/health/ready");

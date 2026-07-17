@@ -1,0 +1,1 @@
+<h2>Cảm ơn {{ full_name }}</h2><p>{{ site_name }} đã nhận yêu cầu đặt phòng mã <strong>{{ reference_code }}</strong>. Chúng tôi sẽ liên hệ sớm.</p>

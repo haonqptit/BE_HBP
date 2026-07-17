@@ -9,6 +9,7 @@ public sealed class AuthService(HbpDbContext db, IPasswordHasher hasher, IClock 
 {
     private static readonly TimeSpan FailureWindow = TimeSpan.FromMinutes(15);
     private static readonly TimeSpan LockDuration = TimeSpan.FromMinutes(15);
+    private static string? _dummyHash;
 
     public async Task<LoginResult> LoginAsync(LoginRequest request, CancellationToken cancellationToken)
     {
@@ -17,9 +18,12 @@ public sealed class AuthService(HbpDbContext db, IPasswordHasher hasher, IClock 
             x => x.Username.ToLower() == normalized || x.Email.ToLower() == normalized,
             cancellationToken);
 
-        // Always perform a hash verification for unknown accounts to reduce timing leakage.
         if (user is null || !user.IsActive)
+        {
+            _dummyHash ??= hasher.Hash("hbp-timing-equalizer");
+            hasher.Verify(_dummyHash, request.Password);
             return new LoginResult(false, false, null);
+        }
 
         var now = clock.UtcNow.UtcDateTime;
         if (user.LockedUntil is not null && user.LockedUntil > now)

@@ -7,6 +7,12 @@ using HBP.Infrastructure.Common;
 using HBP.Application.Media;
 using HBP.Infrastructure.Media;
 using Microsoft.Extensions.Configuration;
+using HBP.Application.Public;
+using HBP.Infrastructure.Public;
+using HBP.Application.Requests;
+using HBP.Infrastructure.Requests;
+using HBP.Application.Email;
+using HBP.Infrastructure.Email;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
@@ -39,6 +45,16 @@ public static class DependencyInjection
         services.AddSingleton<IMediaStorage, LocalFileMediaStorage>();
         services.AddScoped<IMediaService, MediaService>();
         if (configuration is not null) services.Configure<MediaOptions>(configuration.GetSection("Media"));
+        services.AddScoped<IPublicRoomTypeQueryService, PublicRoomTypeQueryService>();
+        services.AddScoped<IPublicServiceQueryService, PublicServiceQueryService>();
+        services.AddScoped<IPublicGalleryQueryService, PublicGalleryQueryService>();
+        services.AddScoped<IPublicAmenityQueryService, PublicAmenityQueryService>();
+        services.AddSingleton<IReferenceCodeGenerator, ReferenceCodeGenerator>();
+        services.AddScoped<IBookingRequestService, BookingRequestService>();
+        services.AddScoped<IContactRequestService, ContactRequestService>();
+        services.AddScoped<IEmailSender, SmtpEmailSender>();
+        services.AddSingleton<IEmailTemplateRenderer, ScribanEmailTemplateRenderer>();
+        if (configuration is not null) services.Configure<SmtpOptions>(configuration.GetSection("Smtp"));
 
         return services;
     }

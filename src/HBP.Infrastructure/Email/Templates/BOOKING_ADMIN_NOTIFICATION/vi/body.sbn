@@ -1,0 +1,1 @@
+<h2>Yêu cầu đặt phòng mới {{ reference_code }}</h2><p>Khách: {{ full_name }} — {{ email }} — {{ phone_number }}</p><p>Nhận phòng: {{ check_in_date }} | Trả phòng: {{ check_out_date }}</p><p>{{ customer_message }}</p>

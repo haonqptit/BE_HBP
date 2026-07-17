@@ -1,0 +1,1 @@
+<h2>{{ full_name }} 様</h2><p>ご予約リクエスト <strong>{{ reference_code }}</strong> を受け付けました。担当者よりご連絡いたします。</p>

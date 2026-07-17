@@ -5,10 +5,12 @@ using HBP.Domain.Entities;
 using HBP.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp;
+using Microsoft.Extensions.Logging;
 
 namespace HBP.Infrastructure.Media;
 
-public sealed class MediaService(HbpDbContext db, IImageProcessor processor, IMediaStorage storage) : IMediaService
+public sealed class MediaService(HbpDbContext db, IImageProcessor processor, IMediaStorage storage,
+    ILogger<MediaService> logger) : IMediaService
 {
     private static readonly HashSet<string> AllowedTypes = ["image/jpeg", "image/png", "image/webp"];
 
@@ -54,8 +56,19 @@ public sealed class MediaService(HbpDbContext db, IImageProcessor processor, IMe
         if (refs.Count > 0) throw new MediaInUseException(refs);
         db.MediaFiles.Remove(entity); await db.SaveChangesAsync(cancellationToken);
         var directory = Path.GetDirectoryName(entity.StoragePath)!;
-        await storage.DeleteAsync(new StoredMediaPaths(entity.StoragePath, Path.Combine(directory, "medium.webp"), Path.Combine(directory, "thumbnail.webp"), entity.PublicUrl), cancellationToken);
+        var paths = new StoredMediaPaths(entity.StoragePath, Path.Combine(directory, "medium.webp"),
+            Path.Combine(directory, "thumbnail.webp"), entity.PublicUrl);
+        try
+        {
+            await storage.DeleteAsync(paths, cancellationToken);
+        }
+        catch (Exception exception)
+        {
+            logger.LogWarning(exception, "Media {MediaId} removed from DB but files orphaned at {Path}", id, entity.StoragePath);
+        }
     }
 
-    private static MediaResponse Map(MediaFile x) => new(x.Id, x.OriginalFileName, x.PublicUrl, x.MimeType, x.SizeBytes, x.Width, x.Height, x.AltTextVi, x.AltTextJa, x.CreatedAt);
+    private static MediaResponse Map(MediaFile x) => new(x.Id, x.OriginalFileName, x.PublicUrl,
+        MediaUrl.Variant(x.PublicUrl, "medium"), MediaUrl.Variant(x.PublicUrl, "thumbnail"),
+        x.MimeType, x.SizeBytes, x.Width, x.Height, x.AltTextVi, x.AltTextJa, x.CreatedAt);
 }

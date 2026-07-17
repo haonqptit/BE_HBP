@@ -6,6 +6,7 @@
     <Project Path="src/HBP.Infrastructure/HBP.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/HBP.IntegrationTests/HBP.IntegrationTests.csproj" />
     <Project Path="tests/HBP.UnitTests/HBP.UnitTests.csproj" />
   </Folder>
 </Solution>
