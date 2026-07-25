@@ -1,0 +1,58 @@
+# Local development stack. Production deploys through Coolify use the same image
+# with migrations applied as a separate pre-deploy step (see docs/deployment.md).
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: hbp
+      POSTGRES_USER: hbp
+      POSTGRES_PASSWORD: hbp_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hbp -d hbp"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  api:
+    build:
+      context: .
+      dockerfile: src/HBP.Api/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__HbpDatabase: "Host=db;Port=5432;Database=hbp;Username=hbp;Password=hbp_dev_password"
+      # Dev/staging convenience only — production applies migrations as a pre-deploy step.
+      RUN_MIGRATIONS_ON_STARTUP: "true"
+      Database__SeedOnStartup: "true"
+      HBP_SEED_ADMIN_USERNAME: admin
+      HBP_SEED_ADMIN_EMAIL: admin@example.local
+      HBP_SEED_ADMIN_PASSWORD: ChangeMe!2026
+      Auth__CookieSecure: "false"
+      Cors__AllowedOrigins__0: "http://localhost:3000"
+      Media__StorageRoot: /data/media
+      Media__BaseUrl: "http://localhost:8080/media"
+      Smtp__Host: mailhog
+      Smtp__Port: "1025"
+      Smtp__Security: None
+      Smtp__FromAddress: "no-reply@example.local"
+      EmailDispatch__PollIntervalSeconds: "15"
+    ports:
+      - "8080:8080"
+    volumes:
+      - media:/data/media
+
+volumes:
+  pgdata:
+  media:

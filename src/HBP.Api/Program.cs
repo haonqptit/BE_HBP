@@ -8,6 +8,7 @@ using HBP.Infrastructure.Persistence;
 using HBP.Infrastructure.Persistence.Seed;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
 using HBP.Api.HostedServices;
 using Serilog;
@@ -77,6 +78,13 @@ builder.Services.Configure<EmailDispatchOptions>(builder.Configuration.GetSectio
 builder.Services.AddHostedService<EmailDispatchBackgroundService>();
 
 var app = builder.Build();
+// Production applies migrations as a separate pre-deploy step (`dotnet ef migrations bundle`);
+// this switch exists for dev/staging containers that have no pre-deploy hook.
+if (app.Configuration.GetValue("RUN_MIGRATIONS_ON_STARTUP", false))
+{
+    await using var scope = app.Services.CreateAsyncScope();
+    await scope.ServiceProvider.GetRequiredService<HbpDbContext>().Database.MigrateAsync();
+}
 if (app.Configuration.GetValue("Database:SeedOnStartup", app.Environment.IsDevelopment()))
 {
     await using var scope = app.Services.CreateAsyncScope();

@@ -1,6 +1,141 @@
-@HBP.Api_HostAddress = http://localhost:5021
+@HBP.Api_HostAddress = http://localhost:5099
+@csrf = paste-token-from-the-csrf-request
 
-GET {{HBP.Api_HostAddress}}/weatherforecast/
+### Liveness
+GET {{HBP.Api_HostAddress}}/health
+
+### Readiness (chạm database)
+GET {{HBP.Api_HostAddress}}/health/ready
+
+### Public — danh sách phòng (tiếng Việt mặc định)
+GET {{HBP.Api_HostAddress}}/api/rooms
 Accept: application/json
 
+### Public — danh sách phòng tiếng Nhật
+GET {{HBP.Api_HostAddress}}/api/rooms?lang=ja
+Accept: application/json
+
+### Public — chi tiết phòng
+GET {{HBP.Api_HostAddress}}/api/rooms/phong-deluxe
+Accept: application/json
+
+### Public — dịch vụ, thư viện ảnh, tiện nghi
+GET {{HBP.Api_HostAddress}}/api/services
+
 ###
+GET {{HBP.Api_HostAddress}}/api/gallery
+
+###
+GET {{HBP.Api_HostAddress}}/api/amenities
+
+### Public — gửi yêu cầu đặt phòng
+POST {{HBP.Api_HostAddress}}/api/booking-requests
+Content-Type: application/json
+
+{
+  "fullName": "Nguyen Van A",
+  "email": "guest@example.com",
+  "phoneNumber": "+84 901 234 567",
+  "checkInDate": "2026-08-01",
+  "checkOutDate": "2026-08-03",
+  "adults": 2,
+  "children": 0,
+  "numberOfRooms": 1,
+  "customerMessage": "Xin phòng tầng cao.",
+  "languageCode": "vi"
+}
+
+### Public — gửi liên hệ
+POST {{HBP.Api_HostAddress}}/api/contact-requests
+Content-Type: application/json
+
+{
+  "fullName": "Tanaka Taro",
+  "email": "tanaka@example.com",
+  "phoneNumber": "0901234567",
+  "subject": "Hỏi về dịch vụ đưa đón",
+  "message": "Cho tôi hỏi giá đưa đón sân bay.",
+  "languageCode": "ja"
+}
+
+### Admin — lấy CSRF token (chép giá trị vào biến @csrf ở đầu file)
+GET {{HBP.Api_HostAddress}}/api/admin/auth/csrf
+
+### Admin — đăng nhập
+POST {{HBP.Api_HostAddress}}/api/admin/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "ChangeMe!2026"
+}
+
+### Admin — thông tin phiên hiện tại
+GET {{HBP.Api_HostAddress}}/api/admin/auth/me
+
+### Admin — dashboard
+GET {{HBP.Api_HostAddress}}/api/admin/dashboard
+
+### Admin — danh sách phòng có phân trang và tìm kiếm
+GET {{HBP.Api_HostAddress}}/api/admin/rooms?page=1&pageSize=20&sort=display_order
+
+### Admin — tạo phòng
+POST {{HBP.Api_HostAddress}}/api/admin/rooms
+Content-Type: application/json
+X-HBP-CSRF: {{csrf}}
+
+{
+  "code": "DLX",
+  "slug": "phong-deluxe",
+  "nameVi": "Phòng Deluxe",
+  "nameJa": "デラックスルーム",
+  "priceDisplayMode": "CONTACT",
+  "capacity": 2,
+  "displayOrder": 0,
+  "isVisible": true
+}
+
+### Admin — thay toàn bộ tiện nghi của phòng
+PUT {{HBP.Api_HostAddress}}/api/admin/rooms/00000000-0000-0000-0000-000000000000/amenities
+Content-Type: application/json
+X-HBP-CSRF: {{csrf}}
+
+{
+  "items": [
+    { "id": "00000000-0000-0000-0000-000000000000", "displayOrder": 0 }
+  ]
+}
+
+### Admin — thay toàn bộ ảnh chi tiết của phòng
+PUT {{HBP.Api_HostAddress}}/api/admin/rooms/00000000-0000-0000-0000-000000000000/media
+Content-Type: application/json
+X-HBP-CSRF: {{csrf}}
+
+{
+  "items": [
+    { "id": "00000000-0000-0000-0000-000000000000", "displayOrder": 0 }
+  ]
+}
+
+### Admin — thư viện media
+GET {{HBP.Api_HostAddress}}/api/admin/media?page=1&pageSize=20
+
+### Admin — tìm kiếm lead theo tên, email hoặc số điện thoại
+GET {{HBP.Api_HostAddress}}/api/admin/booking-requests?search=nguyen&page=1&pageSize=20
+
+###
+GET {{HBP.Api_HostAddress}}/api/admin/contact-requests?search=tanaka
+
+### Admin — cấu hình người nhận thông báo
+PUT {{HBP.Api_HostAddress}}/api/admin/settings/notification_emails
+Content-Type: application/json
+X-HBP-CSRF: {{csrf}}
+
+{
+  "value": "[\"ops@example.com\"]",
+  "description": "Recipients for booking/contact notifications"
+}
+
+### Admin — đăng xuất
+POST {{HBP.Api_HostAddress}}/api/admin/auth/logout
+X-HBP-CSRF: {{csrf}}
