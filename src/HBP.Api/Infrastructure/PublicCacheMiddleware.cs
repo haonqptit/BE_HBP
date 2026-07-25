@@ -4,7 +4,8 @@ namespace HBP.Api.Infrastructure;
 
 public sealed class PublicCacheMiddleware(RequestDelegate next)
 {
-    private static readonly PathString[] Paths = ["/api/rooms", "/api/services", "/api/gallery", "/api/amenities"];
+    private static readonly PathString[] Paths =
+        ["/api/rooms", "/api/services", "/api/gallery", "/api/amenities", "/api/site-metadata"];
 
     public async Task InvokeAsync(HttpContext context)
     {

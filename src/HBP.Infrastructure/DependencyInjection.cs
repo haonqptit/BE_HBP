@@ -51,6 +51,7 @@ public static class DependencyInjection
         services.AddScoped<IPublicServiceQueryService, PublicServiceQueryService>();
         services.AddScoped<IPublicGalleryQueryService, PublicGalleryQueryService>();
         services.AddScoped<IPublicAmenityQueryService, PublicAmenityQueryService>();
+        services.AddScoped<IPublicSiteMetadataQueryService, PublicSiteMetadataQueryService>();
         services.AddSingleton<IReferenceCodeGenerator, ReferenceCodeGenerator>();
         services.AddScoped<IBookingRequestService, BookingRequestService>();
         services.AddScoped<IContactRequestService, ContactRequestService>();

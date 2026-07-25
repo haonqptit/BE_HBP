@@ -25,6 +25,8 @@ public sealed record ServiceDetailResponse(Guid Id, string Slug, string Name,
 public sealed record GalleryItemResponse(Guid Id, ImageResponse Image, string? Caption, int DisplayOrder);
 public sealed record GalleryCategoryResponse(Guid Id, string Slug, string Name, int DisplayOrder,
     IReadOnlyList<GalleryItemResponse> Items);
+public sealed record SiteMetadataResponse(string Name, string Address, string Phone, string Email,
+    string CheckIn, string CheckOut, string Reception);
 
 public interface IPublicRoomTypeQueryService
 {
@@ -43,4 +45,8 @@ public interface IPublicGalleryQueryService
 public interface IPublicAmenityQueryService
 {
     Task<IReadOnlyList<AmenityResponse>> ListAsync(CancellationToken cancellationToken);
+}
+public interface IPublicSiteMetadataQueryService
+{
+    Task<SiteMetadataResponse> GetAsync(CancellationToken cancellationToken);
 }

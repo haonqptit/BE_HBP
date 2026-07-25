@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{22D45414-F5FB-4D2F-99DC-B88D376A94D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBP.Domain", "src\HBP.Domain\HBP.Domain.csproj", "{849D0D85-7FCF-4E34-B3A1-C8401E5565CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBP.Application", "src\HBP.Application\HBP.Application.csproj", "{D94897CB-0930-48C9-8FB9-B1D503D4AF7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBP.Infrastructure", "src\HBP.Infrastructure\HBP.Infrastructure.csproj", "{48B16813-408A-4600-B70A-752EB740ABE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBP.Api", "src\HBP.Api\HBP.Api.csproj", "{8CA3CC77-F4F3-4554-B846-15BF15ED25F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BEAF645F-3ED7-4FC1-8C88-97AACC6A01F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBP.UnitTests", "tests\HBP.UnitTests\HBP.UnitTests.csproj", "{878BEB11-4793-4BD2-890C-B6C65E429AE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBP.IntegrationTests", "tests\HBP.IntegrationTests\HBP.IntegrationTests.csproj", "{0789ECE6-97F6-4F4C-AC17-DE6F62A2B91F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{849D0D85-7FCF-4E34-B3A1-C8401E5565CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849D0D85-7FCF-4E34-B3A1-C8401E5565CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849D0D85-7FCF-4E34-B3A1-C8401E5565CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849D0D85-7FCF-4E34-B3A1-C8401E5565CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D94897CB-0930-48C9-8FB9-B1D503D4AF7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94897CB-0930-48C9-8FB9-B1D503D4AF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94897CB-0930-48C9-8FB9-B1D503D4AF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94897CB-0930-48C9-8FB9-B1D503D4AF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48B16813-408A-4600-B70A-752EB740ABE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B16813-408A-4600-B70A-752EB740ABE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48B16813-408A-4600-B70A-752EB740ABE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48B16813-408A-4600-B70A-752EB740ABE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA3CC77-F4F3-4554-B846-15BF15ED25F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA3CC77-F4F3-4554-B846-15BF15ED25F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA3CC77-F4F3-4554-B846-15BF15ED25F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA3CC77-F4F3-4554-B846-15BF15ED25F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878BEB11-4793-4BD2-890C-B6C65E429AE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878BEB11-4793-4BD2-890C-B6C65E429AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878BEB11-4793-4BD2-890C-B6C65E429AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878BEB11-4793-4BD2-890C-B6C65E429AE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0789ECE6-97F6-4F4C-AC17-DE6F62A2B91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0789ECE6-97F6-4F4C-AC17-DE6F62A2B91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0789ECE6-97F6-4F4C-AC17-DE6F62A2B91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0789ECE6-97F6-4F4C-AC17-DE6F62A2B91F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{849D0D85-7FCF-4E34-B3A1-C8401E5565CE} = {22D45414-F5FB-4D2F-99DC-B88D376A94D1}
+		{D94897CB-0930-48C9-8FB9-B1D503D4AF7C} = {22D45414-F5FB-4D2F-99DC-B88D376A94D1}
+		{48B16813-408A-4600-B70A-752EB740ABE7} = {22D45414-F5FB-4D2F-99DC-B88D376A94D1}
+		{8CA3CC77-F4F3-4554-B846-15BF15ED25F8} = {22D45414-F5FB-4D2F-99DC-B88D376A94D1}
+		{878BEB11-4793-4BD2-890C-B6C65E429AE7} = {BEAF645F-3ED7-4FC1-8C88-97AACC6A01F1}
+		{0789ECE6-97F6-4F4C-AC17-DE6F62A2B91F} = {BEAF645F-3ED7-4FC1-8C88-97AACC6A01F1}
+	EndGlobalSection
+EndGlobal

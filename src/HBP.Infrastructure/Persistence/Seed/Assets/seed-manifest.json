@@ -1,0 +1,34 @@
+{
+  "rooms": [
+    { "id": "premier", "code": "PRE", "label": "08", "sizeM2": 32, "guests": 3, "priceVnd": 880000 },
+    { "id": "balcony", "code": "BAL", "label": "04", "sizeM2": 26, "guests": 2, "priceVnd": 860000 },
+    { "id": "deluxe", "code": "DLX", "label": "06", "sizeM2": 24, "guests": 2, "priceVnd": 830000 },
+    { "id": "standard", "code": "STD", "label": "02", "sizeM2": 20, "guests": 2, "priceVnd": 800000 }
+  ],
+  "gallery": [
+    { "path": "bbhomes/facade/night.png", "category": "spaces" },
+    { "path": "bbhomes/premier/cover.png", "category": "rooms" },
+    { "path": "bbhomes/balcony/cover.png", "category": "rooms" },
+    { "path": "bbhomes/amenities/kit.png", "category": "details" },
+    { "path": "bbhomes/deluxe/cover.png", "category": "rooms" },
+    { "path": "bbhomes/facade/day.png", "category": "spaces" },
+    { "path": "bbhomes/standard/01.png", "category": "rooms" },
+    { "path": "bbhomes/premier/01.png", "category": "rooms" },
+    { "path": "bbhomes/amenities/tray.png", "category": "details" },
+    { "path": "bbhomes/facade/lobby-1.png", "category": "spaces" },
+    { "path": "bbhomes/balcony/01.png", "category": "rooms" },
+    { "path": "bbhomes/deluxe/02.png", "category": "rooms" },
+    { "path": "bbhomes/standard/02.png", "category": "details" },
+    { "path": "bbhomes/premier/03.png", "category": "rooms" },
+    { "path": "bbhomes/facade/lobby-2.png", "category": "spaces" },
+    { "path": "bbhomes/balcony/03.png", "category": "rooms" },
+    { "path": "bbhomes/deluxe/04.png", "category": "rooms" },
+    { "path": "bbhomes/premier/04.png", "category": "rooms" }
+  ],
+  "additionalMedia": [
+    { "path": "ImageBbhomes/ImageRoom/301_BBHotel_resize.jpg", "altVi": "Phòng 301 tại BB Homes", "altJa": "BB Homes 301号室" },
+    { "path": "ImageBbhomes/ImageRoom/302_BBHotel_resize.jpg", "altVi": "Phòng 302 tại BB Homes", "altJa": "BB Homes 302号室" },
+    { "path": "ImageBbhomes/ImageRoom/801_BBHotel_resize.jpg", "altVi": "Phòng 801 tại BB Homes", "altJa": "BB Homes 801号室" },
+    { "path": "ImageBbhomes/ImageRoom/Ngoaicanh_BBHotel_03_resize.jpg", "altVi": "Ngoại cảnh BB Homes", "altJa": "BB Homes 外観" }
+  ]
+}

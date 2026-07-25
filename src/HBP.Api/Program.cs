@@ -90,7 +90,9 @@ if (app.Configuration.GetValue("Database:SeedOnStartup", app.Environment.IsDevel
     await using var scope = app.Services.CreateAsyncScope();
     var db = scope.ServiceProvider.GetRequiredService<HbpDbContext>();
     var hasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher>();
-    await SeedData.InitializeAsync(db, hasher);
+    var imageProcessor = scope.ServiceProvider.GetRequiredService<IImageProcessor>();
+    var mediaStorage = scope.ServiceProvider.GetRequiredService<IMediaStorage>();
+    await SeedData.InitializeAsync(db, hasher, imageProcessor, mediaStorage);
 }
 app.UseForwardedHeaders();
 app.UseExceptionHandler();

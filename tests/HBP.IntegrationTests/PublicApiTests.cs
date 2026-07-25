@@ -8,6 +8,36 @@ namespace HBP.IntegrationTests;
 public sealed class PublicApiTests(PostgresFixture fixture)
 {
     [Fact]
+    public async Task SiteMetadata_IsPublicAndLocalized()
+    {
+        await using (var connection = new NpgsqlConnection(fixture.Container.GetConnectionString()))
+        {
+            await connection.OpenAsync();
+            const string value = """
+                {"name":"BB Homes","addressVi":"Hà Nội","addressJa":"ハノイ","phone":"0123456789",
+                 "email":"hello@example.com","checkInVi":"14:00","checkInJa":"14時",
+                 "checkOutVi":"12:00","checkOutJa":"12時","receptionVi":"24/7","receptionJa":"24時間"}
+            """;
+            await using var command = new NpgsqlCommand(
+                """
+                INSERT INTO system_settings(key,value,description)
+                VALUES ('site_metadata',@value,'Public site metadata')
+                ON CONFLICT(key) DO UPDATE SET value=EXCLUDED.value
+                """, connection);
+            command.Parameters.AddWithValue("value", value);
+            await command.ExecuteNonQueryAsync();
+        }
+
+        var response = await fixture.Factory.CreateClient().GetAsync("/api/site-metadata?lang=ja");
+        var json = await response.Content.ReadAsStringAsync();
+        Assert.True(response.IsSuccessStatusCode, json);
+        using var document = JsonDocument.Parse(json);
+        Assert.Equal("ハノイ", document.RootElement.GetProperty("address").GetString());
+        Assert.Equal("hello@example.com", document.RootElement.GetProperty("email").GetString());
+        Assert.NotNull(response.Headers.ETag);
+    }
+
+    [Fact]
     public async Task Rooms_RespectVisibilityLanguagePricingAndEtag()
     {
         await using (var connection = new NpgsqlConnection(fixture.Container.GetConnectionString()))

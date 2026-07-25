@@ -1,0 +1,314 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "rooms": "Phòng nghỉ",
+    "services": "Dịch vụ",
+    "gallery": "Hình ảnh",
+    "contact": "Liên hệ",
+    "book": "Đặt phòng"
+  },
+  "common": {
+    "bookNow": "Đặt phòng ngay",
+    "viewDetails": "Xem chi tiết",
+    "viewAll": "Xem tất cả",
+    "learnMore": "Tìm hiểu thêm",
+    "from": "Từ",
+    "perNight": "/ đêm",
+    "taxIncluded": "đã gồm thuế & phí",
+    "guests": "Khách",
+    "size": "Diện tích",
+    "bed": "Giường",
+    "view": "Hướng nhìn",
+    "scroll": "Cuộn để khám phá",
+    "backTop": "Về đầu trang",
+    "close": "Đóng",
+    "next": "Tiếp",
+    "prev": "Trước",
+    "menu": "Menu",
+    "language": "日本語"
+  },
+  "hero": {
+    "eyebrow": "Serviced stay · Ba Đình · Hà Nội",
+    "title": "Ở lại thật chậm,\nchạm vào Hà Nội.",
+    "description": "Một serviced home ấm áp giữa con phố Đào Tấn — nơi bạn được đón tại sảnh riêng, nghỉ trong căn phòng ngập nắng và tận hưởng sự chăm chút của một mái nhà đúng nghĩa.",
+    "primary": "Khám phá phòng nghỉ",
+    "secondary": "Câu chuyện của chúng tôi"
+  },
+  "home": {
+    "stats": [
+      { "value": "04", "label": "Hạng phòng thiết kế riêng" },
+      { "value": "08", "label": "Tầng phòng ngập ánh sáng" },
+      { "value": "24/7", "label": "Lễ tân & hỗ trợ tận nơi" }
+    ],
+    "intro": {
+      "eyebrow": "BB Homes · Hanoi",
+      "title": "Một chốn ở nhỏ,\nnhững trải nghiệm thật.",
+      "body": "Ẩn mình trong con phố xanh mát của khu Đào Tấn, BB Homes mang đến nhịp nghỉ vừa đủ riêng tư. Nội thất gỗ sáng, mây đan, những ô cửa rộng và sự chăm sóc chân thành tạo nên cảm giác thân thuộc ngay từ lần đầu ghé thăm.",
+      "quote": "Sự sang trọng nằm trong những điều giản dị được chăm chút kỹ lưỡng.",
+      "link": "Về BB Homes"
+    },
+    "rooms": {
+      "eyebrow": "Phòng nghỉ",
+      "title": "Những căn phòng\nđầy ánh sáng",
+      "description": "Bốn hạng phòng, mỗi phòng một cá tính — từ căn Premier rộng rãi có máy giặt riêng đến phòng Balcony ngập khoảng xanh Hà Nội.",
+      "signature": "Phòng signature"
+    },
+    "house": {
+      "eyebrow": "Ngôi nhà BB Homes",
+      "title": "Trở về\nnhư về nhà",
+      "body": "Không chỉ là chỗ nghỉ, BB Homes là một serviced home đúng nghĩa: sảnh đón sáng đèn mỗi tối, lễ tân 24/7, bộ amenities riêng và khay trà chào mừng trong từng phòng. Bếp nhỏ và máy giặt sẵn sàng cho cả những kỳ lưu trú dài.",
+      "link": "Về BB Homes",
+      "caption": "BB Homes · 95/12 Đào Tấn, Ba Đình"
+    },
+    "gallery": {
+      "eyebrow": "Không gian",
+      "title": "Những lát cắt\nđáng nhớ",
+      "link": "Xem thư viện ảnh"
+    },
+    "cta": {
+      "eyebrow": "Kỳ nghỉ của bạn bắt đầu từ đây",
+      "title": "Hà Nội đang chờ bạn.",
+      "body": "Chọn một căn phòng, để phần còn lại chúng tôi chăm sóc.",
+      "action": "Gửi yêu cầu đặt phòng"
+    }
+  },
+  "rooms": {
+    "hero": {
+      "eyebrow": "Phòng nghỉ",
+      "title": "Nghỉ ngơi\ntheo cách của bạn",
+      "description": "Bốn hạng phòng được chăm chút từng chi tiết — bảng màu tự nhiên, gỗ sáng, mây đan và ánh sáng ngày tràn qua ô cửa lớn. Giá đã gồm thuế & phí."
+    },
+    "items": {
+      "premier": {
+        "name": "Premier",
+        "tagline": "Phòng rộng · Cửa sổ lớn",
+        "summary": "Căn phòng rộng nhất với giường King, khu sofa tiếp khách, cửa kính lớn và máy giặt riêng — thoải mái nhất cho kỳ lưu trú dài.",
+        "description": "Premier là hạng phòng trọn vẹn nhất của BB Homes. Khu ngủ với giường King êm ái, khu tiếp khách có sofa và bàn trà, cùng dải cửa kính lớn buông rèm voan cho ánh sáng ngày ùa vào cả ngày. Bếp nhỏ và máy giặt riêng biến căn phòng thành một chốn ở đúng nghĩa — đủ đầy cho một tuần hay một tháng ở Hà Nội.",
+        "bedType": "Giường King",
+        "viewType": "Cửa sổ lớn nhìn ra thành phố",
+        "amenities": ["Khu sofa tiếp khách", "Máy giặt riêng trong phòng", "Bếp nhỏ & dụng cụ nấu", "Smart TV màn hình lớn", "Bàn làm việc", "Điều hòa hai chiều", "Tủ lạnh mini & ấm đun", "Bộ trà, cà phê & nước suối miễn phí"]
+      },
+      "balcony": {
+        "name": "Balcony",
+        "tagline": "Ban công riêng · Khoảng xanh",
+        "summary": "Phòng giường Queen với ban công riêng nhìn xuống tán cây — nơi lý tưởng cho tách trà sáng và chút gió Hà Nội.",
+        "description": "Balcony Room mang khoảng xanh đến sát bên bạn. Cửa kính kịch trần mở ra ban công riêng với bộ bàn ghế nhỏ, nhìn xuống tán cây của con phố Đào Tấn. Bên trong, tông gỗ ấm, mây đan tự nhiên và chăn ga cotton trắng giữ trọn cảm giác thư thái sau một ngày rong ruổi.",
+        "bedType": "Giường Queen",
+        "viewType": "Ban công riêng · Tán cây xanh",
+        "amenities": ["Ban công riêng có bàn ghế", "Cửa kính kịch trần đón sáng", "Smart TV", "Bếp nhỏ & dụng cụ", "Điều hòa hai chiều", "Tủ lạnh mini", "Ấm đun & bộ trà", "Bộ amenities & nước suối miễn phí"]
+      },
+      "deluxe": {
+        "name": "Deluxe City View",
+        "tagline": "Cửa sổ rộng · View thành phố",
+        "summary": "Phòng giường Queen ngập nắng với ô cửa lớn nhìn ra những mái nhà Hà Nội — sáng sủa, thoáng đãng và yên tĩnh.",
+        "description": "Deluxe City View dành cho những ai yêu ánh sáng ban ngày. Ô cửa lớn mở ra khung cảnh mái nhà và đường chân trời Hà Nội, chiếc ghế bành cạnh cửa sổ là chỗ ngồi được yêu thích nhất để nhâm nhi cà phê buổi sáng. Không gian gọn gàng với gỗ sáng, mây đan và tranh trừu tượng tông đất ấm áp.",
+        "bedType": "Giường Queen",
+        "viewType": "Nhìn ra thành phố",
+        "amenities": ["Ô cửa lớn nhìn ra thành phố", "Ghế bành cạnh cửa sổ", "Smart TV", "Bếp nhỏ & dụng cụ", "Điều hòa hai chiều", "Tủ lạnh mini", "Máy sấy tóc", "Bộ amenities & nước suối miễn phí"]
+      },
+      "standard": {
+        "name": "Standard",
+        "tagline": "Ấm cúng · Tiện nghi đủ đầy",
+        "summary": "Phòng giường Queen ấm cúng với bếp nhỏ và góc trang điểm — gọn gàng, yên tĩnh, vừa vặn cho chuyến đi thành phố.",
+        "description": "Standard chứng minh rằng một không gian vừa vặn vẫn có thể rất đủ đầy. Giường Queen êm kê cạnh đầu giường gỗ có đèn hắt dịu, tủ mây đan, góc trang điểm nhỏ và bếp mini gọn gàng. Một chốn về sạch sẽ, ấm áp và yên tĩnh sau ngày dài khám phá Hà Nội — với đầy đủ tiện nghi thiết yếu.",
+        "bedType": "Giường Queen",
+        "viewType": "Phòng trong, yên tĩnh",
+        "amenities": ["Đầu giường gỗ đèn hắt dịu", "Bếp nhỏ & dụng cụ", "Góc trang điểm", "Smart TV", "Điều hòa hai chiều", "Tủ lạnh mini", "Ấm đun & bộ trà", "Bộ amenities & nước suối miễn phí"]
+      }
+    },
+    "detail": {
+      "priceNote": "Giá mỗi đêm đã gồm thuế & phí",
+      "amenitiesTitle": "Tiện nghi trong phòng",
+      "galleryTitle": "Không gian phòng",
+      "otherRooms": "Những phòng khác",
+      "bookTitle": "Sẵn sàng cho kỳ nghỉ?",
+      "bookBody": "Gửi yêu cầu đặt phòng, chúng tôi sẽ xác nhận trong vòng 24 giờ.",
+      "bookAction": "Đặt phòng này",
+      "backToRooms": "Tất cả phòng nghỉ"
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Về chúng tôi",
+      "title": "Câu chuyện về\nmột ngôi nhà",
+      "description": "BB Homes bắt đầu từ một điều giản dị: mong muốn khách phương xa được ở lại Hà Nội như trở về nhà."
+    },
+    "story": {
+      "eyebrow": "Khởi đầu",
+      "title": "Từ một ngôi nhà\ngiữa phố Đào Tấn",
+      "paragraphs": [
+        "BB Homes nằm trong con phố nhỏ rợp bóng cây ở số 95/12 Đào Tấn, khu Ba Đình — nơi nhịp sống Hà Nội chậm hơn một nhịp so với phố cổ tấp nập. Chúng tôi cải tạo ngôi nhà tám tầng này thành một serviced home, giữ lại sự ấm áp của một mái nhà và thêm vào những tiện nghi được chăm chút của một chốn lưu trú chuyên nghiệp.",
+        "Mỗi căn phòng được thiết kế quanh ánh sáng tự nhiên: cửa kính lớn, rèm hai lớp, tông gỗ sáng, mây đan và vải cotton tự nhiên. Chúng tôi tin rằng sự sang trọng không nằm ở đèn chùm hay đá cẩm thạch, mà ở giấc ngủ thật sâu, vòi nước thật ấm và sự yên tĩnh thật trọn vẹn.",
+        "Từ sảnh đón sáng đèn mỗi tối đến bộ amenities in tên BB Homes trong từng phòng, chúng tôi chăm chút cho cả những chi tiết nhỏ nhất. Bởi với chúng tôi, một kỳ lưu trú đẹp là khi bạn có thể buông hành lý xuống và thở phào: mình đã về đến nhà."
+      ]
+    },
+    "values": {
+      "eyebrow": "Điều chúng tôi tin",
+      "title": "Ba điều làm nên\nBB Homes",
+      "items": [
+        { "title": "Tĩnh lặng", "body": "Giữa thành phố ồn ã, chúng tôi giữ cho từng căn phòng một sự yên tĩnh trọn vẹn — từ cách âm, ánh sáng đến nhịp phục vụ không làm phiền." },
+        { "title": "Chân thành", "body": "Không kịch bản phục vụ, không nụ cười công nghiệp. Chúng tôi đón khách như đón một người bạn ghé thăm nhà." },
+        { "title": "Tinh giản", "body": "Mỗi món đồ trong phòng đều có lý do tồn tại. Chúng tôi chọn ít hơn, nhưng tốt hơn — từ tấm ga giường đến hạt cà phê buổi sáng." }
+      ]
+    },
+    "space": {
+      "eyebrow": "Không gian",
+      "title": "Được thiết kế\nquanh ánh sáng",
+      "body": "Tám tầng nhà, bốn hạng phòng và một sảnh đón ấm cúng — tất cả xoay quanh thứ quý giá nhất của kiến trúc Hà Nội: ánh sáng ngày dịu dàng và những khoảng xanh bất chợt."
+    },
+    "cta": {
+      "title": "Đến và ở lại như ở nhà.",
+      "action": "Xem phòng nghỉ"
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Dịch vụ",
+      "title": "Được chăm sóc,\nkhông bị làm phiền",
+      "description": "Từ sảnh đón ấm cúng đến chuyến xe ra sân bay lúc sớm — mọi dịch vụ đều xoay quanh nhịp nghỉ của bạn."
+    },
+    "welcome": {
+      "eyebrow": "Đón bạn tại BB Homes",
+      "title": "Sảnh đón\nvà những chăm chút nhỏ",
+      "body": "Ngay từ khi bước qua cánh cửa sáng đèn, bạn được đón bằng sự ân cần. Lễ tân trực 24/7, bộ amenities in tên BB Homes và khay trà chào mừng đặt sẵn trong từng phòng — những chi tiết nhỏ khiến một chuyến đi trở thành một chốn về.",
+      "points": [
+        "Lễ tân 24/7 · nhận và trả phòng linh hoạt",
+        "Bộ amenities BB Homes & khay trà chào mừng mỗi phòng"
+      ]
+    },
+    "list": {
+      "eyebrow": "Dịch vụ lưu trú",
+      "title": "Những điều nhỏ\nđược lo trọn",
+      "items": [
+        { "title": "Đưa đón sân bay", "body": "Xe riêng đón tiễn sân bay Nội Bài, đặt trước tối thiểu 12 giờ. Tài xế chờ sẵn với bảng tên của bạn." },
+        { "title": "Bữa sáng tại phòng", "body": "Bữa sáng kiểu Việt hoặc kiểu Âu, chuẩn bị mỗi sáng và mang lên tận phòng trong khung 7:00 – 9:30." },
+        { "title": "Giặt ủi & máy giặt", "body": "Hạng Premier có máy giặt riêng trong phòng; các hạng khác dùng dịch vụ giặt ủi trong ngày, gửi trước 9:00 nhận lại trước 19:00." },
+        { "title": "Gợi ý hành trình", "body": "Bản đồ Hà Nội do chính chúng tôi vẽ: quán phở gia truyền, tiệm cà phê trong ngõ và những đoạn phố đáng đi bộ nhất." },
+        { "title": "Thuê xe đạp & xe máy", "body": "Xe đạp miễn phí cho khách lưu trú; xe máy thuê theo ngày kèm mũ bảo hiểm và chỉ dẫn tận tình." },
+        { "title": "Lưu trú dài ngày", "body": "Ưu đãi riêng cho kỳ lưu trú từ 7 đêm — dọn phòng theo lịch riêng, bếp và máy giặt sẵn sàng cho cuộc sống thường nhật." }
+      ]
+    },
+    "cta": {
+      "title": "Cần điều gì khác? Cứ hỏi chúng tôi.",
+      "action": "Liên hệ"
+    }
+  },
+  "gallery": {
+    "hero": {
+      "eyebrow": "Thư viện ảnh",
+      "title": "Không gian\nđể nhớ",
+      "description": "Những lát cắt chân thực tại BB Homes — không dàn dựng, chỉ có ánh sáng thật và những góc nhà được yêu."
+    },
+    "filters": {
+      "all": "Tất cả",
+      "rooms": "Phòng nghỉ",
+      "spaces": "Ngôi nhà",
+      "details": "Chi tiết"
+    },
+    "hint": "Chạm vào ảnh để xem toàn màn hình"
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Liên hệ",
+      "title": "Chúng tôi\nluôn ở đây",
+      "description": "Một câu hỏi nhỏ hay một kế hoạch dài ngày — hãy nhắn cho chúng tôi, phản hồi luôn đến trong ngày."
+    },
+    "info": {
+      "title": "BB Homes Hanoi",
+      "addressLabel": "Địa chỉ",
+      "address": "95/12 Đào Tấn, Ba Đình, Hà Nội",
+      "phoneLabel": "Hotline",
+      "phone": "084 456 5665",
+      "emailLabel": "Email",
+      "email": "admin@bbhomesserviced.com",
+      "hoursLabel": "Lễ tân",
+      "hours": "24/7 · Nhận phòng 14:00 · Trả phòng 12:00",
+      "mapNote": "Cách hồ Hoàn Kiếm 15 phút · Sân bay Nội Bài 35 phút"
+    },
+    "form": {
+      "title": "Gửi lời nhắn",
+      "name": "Họ và tên",
+      "namePlaceholder": "Nguyễn Minh An",
+      "email": "Email",
+      "emailPlaceholder": "minhan@email.com",
+      "subject": "Chủ đề",
+      "subjectPlaceholder": "Hỏi về kỳ lưu trú tháng tới",
+      "message": "Lời nhắn",
+      "messagePlaceholder": "Chúng tôi có thể giúp gì cho bạn?",
+      "submit": "Gửi lời nhắn",
+      "sending": "Đang gửi…",
+      "success": {
+        "title": "Đã nhận được lời nhắn của bạn",
+        "body": "Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi qua email trong hôm nay.",
+        "again": "Gửi lời nhắn khác"
+      },
+      "errors": {
+        "required": "Vui lòng điền thông tin này",
+        "email": "Email chưa đúng định dạng"
+      }
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "items": [
+        { "q": "Giờ nhận và trả phòng?", "a": "Nhận phòng từ 14:00, trả phòng trước 12:00. Nếu bạn đến sớm hoặc về muộn, hãy báo trước — chúng tôi luôn cố gắng thu xếp." },
+        { "q": "Phòng có bếp và máy giặt không?", "a": "Tất cả phòng đều có bếp nhỏ và dụng cụ cơ bản. Hạng Premier có thêm máy giặt riêng trong phòng; các hạng khác có thể dùng dịch vụ giặt ủi của BB Homes." },
+        { "q": "Có chỗ đỗ xe không?", "a": "Có chỗ để xe máy trong nhà. Với ô tô, chúng tôi sẽ hướng dẫn bãi đỗ an toàn gần đó." }
+      ]
+    }
+  },
+  "booking": {
+    "hero": {
+      "eyebrow": "Đặt phòng",
+      "title": "Bắt đầu\nkỳ nghỉ của bạn",
+      "description": "Điền thông tin bên dưới, chúng tôi sẽ xác nhận tình trạng phòng và giá tốt nhất trong vòng 24 giờ. Giá phòng đã gồm thuế & phí."
+    },
+    "form": {
+      "stayTitle": "Thời gian lưu trú",
+      "checkin": "Ngày nhận phòng",
+      "checkout": "Ngày trả phòng",
+      "guests": "Số khách",
+      "guestsSuffix": "khách",
+      "roomTitle": "Chọn hạng phòng",
+      "roomAny": "Để BB Homes gợi ý",
+      "contactTitle": "Thông tin liên hệ",
+      "name": "Họ và tên",
+      "namePlaceholder": "Nguyễn Minh An",
+      "email": "Email",
+      "emailPlaceholder": "minhan@email.com",
+      "phone": "Số điện thoại",
+      "phonePlaceholder": "+84 912 345 678",
+      "notes": "Ghi chú thêm",
+      "notesPlaceholder": "Giờ đến dự kiến, yêu cầu đặc biệt…",
+      "submit": "Gửi yêu cầu đặt phòng",
+      "sending": "Đang gửi…",
+      "disclaimer": "Đây là yêu cầu đặt phòng, chưa phải xác nhận. Chúng tôi sẽ email xác nhận kèm hướng dẫn thanh toán. Giá phòng đã gồm thuế & phí.",
+      "success": {
+        "title": "Yêu cầu đã được gửi",
+        "body": "Cảm ơn bạn! Chúng tôi sẽ kiểm tra tình trạng phòng và phản hồi qua email trong vòng 24 giờ.",
+        "back": "Về trang chủ"
+      },
+      "errors": {
+        "required": "Vui lòng điền thông tin này",
+        "email": "Email chưa đúng định dạng",
+        "dates": "Ngày trả phòng phải sau ngày nhận phòng"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Serviced stay in Hanoi",
+    "about": "Serviced home boutique giữa con phố xanh Đào Tấn — nơi sự sang trọng nằm trong những điều giản dị được chăm chút kỹ lưỡng.",
+    "contactTitle": "Liên hệ",
+    "address": "95/12 Đào Tấn, Ba Đình, Hà Nội",
+    "phone": "084 456 5665",
+    "email": "admin@bbhomesserviced.com",
+    "hoursTitle": "Giờ đón khách",
+    "checkin": "Nhận phòng 14:00",
+    "checkout": "Trả phòng 12:00",
+    "reception": "Lễ tân 24/7",
+    "navTitle": "Khám phá",
+    "bookTitle": "Sẵn sàng cho Hà Nội?",
+    "bookBody": "Gửi yêu cầu hôm nay, xác nhận trong 24 giờ.",
+    "copyright": "BB Homes. All rights reserved."
+  }
+}

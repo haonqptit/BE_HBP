@@ -16,7 +16,7 @@ public class RoomType
     public string? DescriptionJa { get; set; }
     public decimal? PriceVnd { get; set; }
     public decimal? PriceUsd { get; set; }
-    public PriceDisplayMode PriceDisplayMode { get; set; }
+    public PriceDisplayMode PriceDisplayMode { get; set; } = PriceDisplayMode.CONTACT;
     public int Capacity { get; set; }
     public decimal? AreaSquareMeters { get; set; }
     public string? BedDescriptionVi { get; set; }

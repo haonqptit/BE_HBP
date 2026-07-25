@@ -68,6 +68,7 @@ public class RoomTypeConfiguration : IEntityTypeConfiguration<RoomType>
         builder.Property(e => e.PriceDisplayMode)
             .HasColumnName("price_display_mode")
             .HasDefaultValue(Domain.Enums.PriceDisplayMode.CONTACT)
+            .HasSentinel((Domain.Enums.PriceDisplayMode)(-1))
             .IsRequired();
 
         builder.Property(e => e.Capacity)

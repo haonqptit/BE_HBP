@@ -18,6 +18,9 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Email\Templates\**\*.sbn" />
+    <Content Include="Persistence\Seed\Assets\**\*"
+             CopyToOutputDirectory="PreserveNewest"
+             CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
   <PropertyGroup>

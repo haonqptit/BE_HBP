@@ -8,7 +8,12 @@ namespace HBP.Infrastructure.Persistence.Seed;
 
 public static class SeedData
 {
-    public static async Task InitializeAsync(HbpDbContext db, IPasswordHasher hasher, CancellationToken cancellationToken = default)
+    public static async Task InitializeAsync(
+        HbpDbContext db,
+        IPasswordHasher hasher,
+        IImageProcessor imageProcessor,
+        IMediaStorage mediaStorage,
+        CancellationToken cancellationToken = default)
     {
         var username = Environment.GetEnvironmentVariable("HBP_SEED_ADMIN_USERNAME");
         var email = Environment.GetEnvironmentVariable("HBP_SEED_ADMIN_EMAIL");
@@ -33,15 +38,35 @@ public static class SeedData
             });
         }
 
-        if (!await db.SystemSettings.AnyAsync(x => x.Key == "site_metadata", cancellationToken))
+        var siteMetadata = await db.SystemSettings.SingleOrDefaultAsync(x => x.Key == "site_metadata", cancellationToken);
+        var defaultSiteMetadata = JsonSerializer.Serialize(new
+        {
+            name = "BB Homes",
+            addressVi = "95/12 Đào Tấn, Ba Đình, Hà Nội",
+            addressJa = "95/12 ダオタン通り、バーディン区、ハノイ",
+            phone = "084 456 5665",
+            email = "admin@bbhomesserviced.com",
+            checkInVi = "Nhận phòng từ 14:00",
+            checkInJa = "チェックイン 14:00から",
+            checkOutVi = "Trả phòng trước 12:00",
+            checkOutJa = "チェックアウト 12:00まで",
+            receptionVi = "Lễ tân 24/7",
+            receptionJa = "フロント 24時間対応"
+        });
+        if (siteMetadata is null)
         {
             db.SystemSettings.Add(new SystemSetting
             {
-                Key = "site_metadata", Value = "{}", Description = "Public site metadata"
+                Key = "site_metadata", Value = defaultSiteMetadata, Description = "Public site metadata"
             });
         }
+        else if (siteMetadata.Value == "{}")
+        {
+            // Upgrade the original empty development seed without overwriting configured metadata.
+            siteMetadata.Value = defaultSiteMetadata;
+        }
 
-        await SeedContentAsync(db, cancellationToken);
+        await FrontendContentSeeder.SeedAsync(db, imageProcessor, mediaStorage, cancellationToken);
         await db.SaveChangesAsync(cancellationToken);
     }
 

@@ -277,3 +277,16 @@ dung đó hiển thị trên trang đã prerender, thêm path tương ứng vào
 tính lúc build.
 
 **Khi FE đổi origin** → cập nhật `Cors__AllowedOrigins` của BE và khởi động lại.
+
+---
+
+## 12. Cập nhật tích hợp 2026-07-25
+
+- Đã bổ sung `GET /api/site-metadata?lang=vi|ja` để public website đọc tên, địa chỉ, điện thoại,
+  email, giờ nhận/trả phòng và giờ lễ tân từ `system_settings.site_metadata`.
+- Endpoint có ETag/cache giống các API public khác. Bản Nhật fallback về trường tiếng Việt khi thiếu.
+- Footer và trang Liên hệ của FE đã dùng endpoint này; các giá trị liên hệ cũ trong i18n không còn được
+  dùng làm nguồn dữ liệu runtime.
+- Khi admin lưu `site_metadata`, FE invalidates cả tag `site-metadata` và layout `/[lang]`.
+- Docker FE dùng `BUILD_API_BASE_URL` khi prerender và `API_BASE_URL` khi chạy. Local Docker Desktop:
+  build qua `http://host.docker.internal:8080`, runtime qua `http://api:8080` trên network Backend.
