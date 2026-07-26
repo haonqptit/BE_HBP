@@ -1,1 +1,1 @@
-{{ site_name }} — ご予約リクエスト {{ reference_code }} を受け付けました
+{{ company_name }} — ご予約リクエストを受け付けました · {{ reference_code }}

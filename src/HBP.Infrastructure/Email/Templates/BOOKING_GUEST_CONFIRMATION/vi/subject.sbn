@@ -1,1 +1,1 @@
-{{ site_name }} đã nhận yêu cầu đặt phòng {{ reference_code }}
+{{ company_name }} đã nhận yêu cầu lưu trú · {{ reference_code }}

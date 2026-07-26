@@ -65,7 +65,11 @@ public static class DependencyInjection
         services.AddScoped<IAdminDashboardService, AdminDashboardService>();
         services.AddScoped<IEmailSender, SmtpEmailSender>();
         services.AddSingleton<IEmailTemplateRenderer, ScribanEmailTemplateRenderer>();
-        if (configuration is not null) services.Configure<SmtpOptions>(configuration.GetSection("Smtp"));
+        if (configuration is not null)
+        {
+            services.Configure<SmtpOptions>(configuration.GetSection("Smtp"));
+            services.Configure<EmailBrandOptions>(configuration.GetSection(EmailBrandOptions.SectionName));
+        }
 
         return services;
     }

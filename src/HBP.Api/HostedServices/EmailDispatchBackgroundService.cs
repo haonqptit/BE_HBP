@@ -81,26 +81,68 @@ public sealed class EmailDispatchBackgroundService(IServiceScopeFactory scopeFac
         EmailDelivery delivery, CancellationToken cancellationToken)
     {
         var siteName = "HBP";
+        string? companyAddress = null;
+        string? companyPhone = null;
+        string? companyEmail = null;
         var metadata = await db.SystemSettings.AsNoTracking().Where(x => x.Key == "site_metadata").Select(x => x.Value).SingleOrDefaultAsync(cancellationToken);
-        try { if (metadata is not null && JsonDocument.Parse(metadata).RootElement.TryGetProperty("name", out var name)) siteName = name.GetString() ?? siteName; } catch (JsonException) { }
+        try
+        {
+            if (metadata is not null)
+            {
+                using var document = JsonDocument.Parse(metadata);
+                var root = document.RootElement;
+                if (root.TryGetProperty("name", out var name)) siteName = name.GetString() ?? siteName;
+                var addressProperty = delivery.LanguageCode == LanguageCode.Ja ? "addressJa" : "addressVi";
+                if (root.TryGetProperty(addressProperty, out var address)) companyAddress = address.GetString();
+                if (root.TryGetProperty("phone", out var phone)) companyPhone = phone.GetString();
+                if (root.TryGetProperty("email", out var email)) companyEmail = email.GetString();
+            }
+        }
+        catch (JsonException) { }
+
+        Dictionary<string, object?> CommonModel() => new()
+        {
+            ["site_name"] = siteName,
+            ["company_name"] = siteName,
+            ["related_entity_id"] = delivery.RelatedEntityId
+        };
+
         if (delivery.RelatedEntityType == "BookingRequest")
         {
             var x = await db.BookingRequests.AsNoTracking().Include(b => b.RoomType).SingleOrDefaultAsync(b => b.Id == delivery.RelatedEntityId, cancellationToken);
             if (x is null) return null;
-            return new Dictionary<string, object?> { ["site_name"] = siteName, ["reference_code"] = x.ReferenceCode,
-                ["full_name"] = x.FullName, ["email"] = x.Email, ["phone_number"] = x.PhoneNumber,
-                ["check_in_date"] = x.CheckInDate?.ToString("yyyy-MM-dd"), ["check_out_date"] = x.CheckOutDate?.ToString("yyyy-MM-dd"),
-                ["adults"] = x.Adults, ["children"] = x.Children, ["number_of_rooms"] = x.NumberOfRooms,
-                ["room_type_name"] = x.RoomType is null ? null : Localized.Pick(delivery.LanguageCode, x.RoomType.NameVi, x.RoomType.NameJa),
-                ["customer_message"] = x.CustomerMessage };
+            var model = CommonModel();
+            if (!string.IsNullOrWhiteSpace(companyAddress)) model["company_address"] = companyAddress;
+            if (!string.IsNullOrWhiteSpace(companyPhone)) model["company_phone"] = companyPhone;
+            if (!string.IsNullOrWhiteSpace(companyEmail)) model["company_email"] = companyEmail;
+            model["reference_code"] = x.ReferenceCode;
+            model["full_name"] = x.FullName;
+            model["email"] = x.Email;
+            model["phone_number"] = x.PhoneNumber;
+            model["check_in_date"] = x.CheckInDate?.ToString("dd/MM/yyyy");
+            model["check_out_date"] = x.CheckOutDate?.ToString("dd/MM/yyyy");
+            model["adults"] = x.Adults;
+            model["children"] = x.Children;
+            model["number_of_rooms"] = x.NumberOfRooms;
+            model["room_type_name"] = x.RoomType is null ? null : Localized.Pick(delivery.LanguageCode, x.RoomType.NameVi, x.RoomType.NameJa);
+            model["customer_message"] = x.CustomerMessage;
+            return model;
         }
         if (delivery.RelatedEntityType == "ContactRequest")
         {
             var x = await db.ContactRequests.AsNoTracking().SingleOrDefaultAsync(c => c.Id == delivery.RelatedEntityId, cancellationToken);
             if (x is null) return null;
-            return new Dictionary<string, object?> { ["site_name"] = siteName, ["reference_code"] = x.ReferenceCode,
-                ["full_name"] = x.FullName, ["email"] = x.Email, ["phone_number"] = x.PhoneNumber,
-                ["subject"] = x.Subject, ["message"] = x.Message };
+            var model = CommonModel();
+            if (!string.IsNullOrWhiteSpace(companyAddress)) model["company_address"] = companyAddress;
+            if (!string.IsNullOrWhiteSpace(companyPhone)) model["company_phone"] = companyPhone;
+            if (!string.IsNullOrWhiteSpace(companyEmail)) model["company_email"] = companyEmail;
+            model["reference_code"] = x.ReferenceCode;
+            model["full_name"] = x.FullName;
+            model["email"] = x.Email;
+            model["phone_number"] = x.PhoneNumber;
+            model["subject"] = x.Subject;
+            model["message"] = x.Message;
+            return model;
         }
         return null;
     }

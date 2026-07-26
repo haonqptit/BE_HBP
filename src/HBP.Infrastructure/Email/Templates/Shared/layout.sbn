@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="{{ language_path }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
+  <title>{{ email_subject }}</title>
+  <!--[if mso]><noscript><xml><o:OfficeDocumentSettings xmlns:o="urn:schemas-microsoft-com:office:office"><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
+  <style>
+    @media only screen and (max-width: 640px) {
+      .email-shell { width: 100% !important; }
+      .mobile-pad { padding-left: 24px !important; padding-right: 24px !important; }
+      .mobile-stack { display: block !important; width: 100% !important; }
+      .mobile-center { text-align: center !important; }
+      .detail-label { width: 42% !important; }
+      .email-title { font-size: 28px !important; line-height: 34px !important; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .email-bg { background-color: #eee8de !important; }
+      .email-card { background-color: #ffffff !important; }
+    }
+  </style>
+</head>
+<body class="email-bg" style="margin:0;padding:0;width:100%;background-color:#f3eee6;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;mso-hide:all;">{{ preheader }}</div>
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">&#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp; &#847;</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;background-color:#f3eee6;">
+    <tr>
+      <td align="center" style="padding:32px 12px;">
+        <!--[if mso]><table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0"><tr><td><![endif]-->
+        <table class="email-shell email-card" role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;border-collapse:separate;background-color:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(38,34,27,.10);">
+          <tr>
+            <td style="height:5px;background-color:#a98b5f;font-size:0;line-height:0;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="mobile-pad" align="center" style="padding:30px 48px 26px;background-color:#faf7f1;border-bottom:1px solid #e9e0d2;">
+              <a href="{{ website_url }}" target="_blank" style="text-decoration:none;">
+                <img src="{{ logo_url }}" width="122" alt="{{ company_name }}" style="display:block;width:122px;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;">
+              </a>
+              <div style="padding-top:14px;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:16px;letter-spacing:3px;text-transform:uppercase;color:#7c7468;">Serviced stay in Hanoi</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="mobile-pad" style="padding:42px 48px 46px;background-color:#ffffff;">
+              {{ email_content }}
+            </td>
+          </tr>
+          <tr>
+            <td class="mobile-pad" style="padding:32px 48px;background-color:#26221b;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;">
+                <tr>
+                  <td class="mobile-stack mobile-center" valign="top" style="width:55%;padding:0 20px 20px 0;font-family:Arial,Helvetica,sans-serif;">
+                    <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:28px;letter-spacing:1px;color:#faf7f1;">{{ company_name }}</div>
+                    <div style="padding-top:8px;font-size:12px;line-height:19px;color:#c9c0b3;">{{ if language_path == "ja" }}ハノイ中心部で、上質なくつろぎのひとときを。{{ else }}Một không gian lưu trú thanh lịch giữa lòng Hà Nội.{{ end }}</div>
+                  </td>
+                  <td class="mobile-stack mobile-center" valign="top" style="padding:0 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;color:#c9c0b3;">
+                    <a href="tel:{{ company_phone }}" style="color:#faf7f1;text-decoration:none;">{{ company_phone }}</a><br>
+                    <a href="mailto:{{ company_email }}" style="color:#faf7f1;text-decoration:none;">{{ company_email }}</a><br>
+                    <a href="{{ website_url }}" style="color:#c9ae83;text-decoration:none;">bbhomesserviced.com</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding:20px 0 0;border-top:1px solid #484239;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:18px;color:#9f978c;text-align:center;">
+                    {{ company_address }}<br>
+                    {{ if facebook_url }}<a href="{{ facebook_url }}" style="color:#c9ae83;text-decoration:none;">Facebook</a>{{ end }}{{ if facebook_url && instagram_url }}&nbsp;&nbsp;·&nbsp;&nbsp;{{ end }}{{ if instagram_url }}<a href="{{ instagram_url }}" style="color:#c9ae83;text-decoration:none;">Instagram</a>{{ end }}
+                    <div style="padding-top:12px;">© {{ current_year }} {{ company_name }}. All rights reserved.</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <div style="max-width:600px;padding:18px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:16px;color:#8b8378;text-align:center;">
+          {{ if language_path == "ja" }}このメールは {{ company_name }} のシステムより自動送信されています。受付番号を第三者と共有しないでください。{{ else }}Email này được gửi tự động từ hệ thống {{ company_name }}. Vui lòng không chia sẻ mã yêu cầu với người không liên quan.{{ end }}
+        </div>
+        <!--[if mso]></td></tr></table><![endif]-->
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

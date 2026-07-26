@@ -1,1 +1,1 @@
-{{ site_name }} đã nhận liên hệ {{ reference_code }}
+{{ company_name }} đã nhận tin nhắn của bạn · {{ reference_code }}

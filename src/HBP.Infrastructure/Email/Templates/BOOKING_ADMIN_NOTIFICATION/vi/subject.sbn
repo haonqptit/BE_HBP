@@ -1,1 +1,1 @@
-[HBP] Yêu cầu đặt phòng {{ reference_code }}
+[{{ company_name }}] Yêu cầu đặt phòng mới · {{ reference_code }}
