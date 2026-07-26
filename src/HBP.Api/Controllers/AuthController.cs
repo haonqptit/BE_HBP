@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using HBP.Api.Infrastructure;
 using System.Security.Cryptography;
 
@@ -58,5 +59,30 @@ public sealed class AuthController(IAuthService authService) : ControllerBase
         if (!Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var id)) return Unauthorized();
         var user = await authService.GetByIdAsync(id, cancellationToken);
         return user is null ? Unauthorized() : Ok(user);
+    }
+
+    [Authorize]
+    [HttpPost("change-password")]
+    [EnableRateLimiting("admin-sensitive")]
+    public async Task<IActionResult> ChangePassword(ChangePasswordRequest request,
+        CancellationToken cancellationToken)
+    {
+        if (!Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var id)) return Unauthorized();
+
+        var result = await authService.ChangePasswordAsync(id, request, cancellationToken);
+        if (result == ChangePasswordResult.UserNotFound) return Unauthorized();
+        if (result == ChangePasswordResult.IncorrectCurrentPassword)
+            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
+            {
+                [nameof(ChangePasswordRequest.CurrentPassword)] = ["Current password is incorrect."]
+            }));
+        if (result == ChangePasswordResult.NewPasswordMatchesCurrent)
+            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
+            {
+                [nameof(ChangePasswordRequest.NewPassword)] = ["New password must be different from the current password."]
+            }));
+
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return NoContent();
     }
 }

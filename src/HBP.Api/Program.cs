@@ -73,6 +73,13 @@ builder.Services.AddRateLimiter(options =>
             PermitLimit = 5, Window = TimeSpan.FromMinutes(1), QueueLimit = 0,
             QueueProcessingOrder = QueueProcessingOrder.OldestFirst
         }));
+    options.AddPolicy("admin-sensitive", context => RateLimitPartition.GetFixedWindowLimiter(
+        context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+        _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 5, Window = TimeSpan.FromMinutes(1), QueueLimit = 0,
+            QueueProcessingOrder = QueueProcessingOrder.OldestFirst
+        }));
 });
 builder.Services.Configure<EmailDispatchOptions>(builder.Configuration.GetSection("EmailDispatch"));
 builder.Services.AddHostedService<EmailDispatchBackgroundService>();

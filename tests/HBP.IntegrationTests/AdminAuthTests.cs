@@ -67,4 +67,28 @@ public sealed class AdminAuthTests(PostgresFixture fixture)
             new { username = "lockout_admin", password = Password });
         Assert.Equal(HttpStatusCode.Locked, correct.StatusCode);
     }
+
+    [Fact]
+    public async Task ChangePasswordRequiresCurrentPasswordAndInvalidatesTheSession()
+    {
+        const string username = "password_admin";
+        const string newPassword = "A-New-Admin-Password-2026!";
+        await AdminSession.CreateAdminAsync(fixture, username, Password);
+        var client = await AdminSession.SignInAsync(fixture, username, Password);
+
+        var incorrect = await client.PostAsJsonAsync("/api/admin/auth/change-password",
+            new { currentPassword = "incorrect-password", newPassword, confirmPassword = newPassword });
+        Assert.Equal(HttpStatusCode.BadRequest, incorrect.StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/admin/auth/me")).StatusCode);
+
+        var changed = await client.PostAsJsonAsync("/api/admin/auth/change-password",
+            new { currentPassword = Password, newPassword, confirmPassword = newPassword });
+        Assert.Equal(HttpStatusCode.NoContent, changed.StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await client.GetAsync("/api/admin/auth/me")).StatusCode);
+
+        var oldPassword = await fixture.Factory.CreateClient().PostAsJsonAsync("/api/admin/auth/login",
+            new { username, password = Password });
+        Assert.Equal(HttpStatusCode.Unauthorized, oldPassword.StatusCode);
+        await AdminSession.SignInAsync(fixture, username, newPassword);
+    }
 }

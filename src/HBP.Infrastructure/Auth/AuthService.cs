@@ -61,6 +61,24 @@ public sealed class AuthService(HbpDbContext db, IPasswordHasher hasher, IClock 
             .Select(x => new AdminUserResponse(x.Id, x.Username, x.Email))
             .SingleOrDefaultAsync(cancellationToken);
 
+    public async Task<ChangePasswordResult> ChangePasswordAsync(Guid id, ChangePasswordRequest request,
+        CancellationToken cancellationToken)
+    {
+        var user = await db.AdminUsers.SingleOrDefaultAsync(x => x.Id == id && x.IsActive, cancellationToken);
+        if (user is null) return ChangePasswordResult.UserNotFound;
+        if (!hasher.Verify(user.PasswordHash, request.CurrentPassword))
+            return ChangePasswordResult.IncorrectCurrentPassword;
+        if (hasher.Verify(user.PasswordHash, request.NewPassword))
+            return ChangePasswordResult.NewPasswordMatchesCurrent;
+
+        user.PasswordHash = hasher.Hash(request.NewPassword);
+        user.FailedCount = 0;
+        user.FirstFailedAt = null;
+        user.LockedUntil = null;
+        await db.SaveChangesAsync(cancellationToken);
+        return ChangePasswordResult.Succeeded;
+    }
+
     private static AdminUserResponse Map(Domain.Entities.AdminUser user) =>
         new(user.Id, user.Username, user.Email);
 }
